@@ -1,0 +1,26 @@
+services:
+  prometheus:
+    image: prom/prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+    ports:
+      - 9090:9090
+    extra_hosts:
+      - "kubernetes.docker.internal:host-gateway"
+    volumes:
+      - ./cfg/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+      - ./data/prometheus:/prometheus
+  grafana:
+    image: grafana/grafana
+    ports:
+      - 3000:3000
+    extra_hosts:
+      - "kubernetes.docker.internal:host-gateway"
+    environment:
+      - GF_SECURITY_ADMIN_USER=admin
+      - GF_SECURITY_ADMIN_PASSWORD=grafana
+    volumes:
+      - ./cfg/grafana:/etc/grafana/provisioning/datasources
+      - ./data/grafana:/var/lib/grafana
+volumes:
+  prom_data:
