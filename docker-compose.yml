@@ -10,6 +10,7 @@ services:
     volumes:
       - ./cfg/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
       - ./data/prometheus:/prometheus
+ 
   grafana:
     image: grafana/grafana
     ports:
@@ -20,7 +21,6 @@ services:
       - GF_SECURITY_ADMIN_USER=admin
       - GF_SECURITY_ADMIN_PASSWORD=grafana
     volumes:
-      - ./cfg/grafana:/etc/grafana/provisioning/datasources
+      - ./cfg/grafana/data-sources:/etc/grafana/provisioning/datasources
+      - ./cfg/grafana/dashboards:/etc/grafana/provisioning/dashboards/
       - ./data/grafana:/var/lib/grafana
-volumes:
-  prom_data:
