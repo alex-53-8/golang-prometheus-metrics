@@ -26,8 +26,9 @@ func main() {
 			// handle error
 			fmt.Printf(err.Error())
 		}
-		var sleepTimeSec = randRange(10, 1600)
-		var sleepTime = time.Duration(sleepTimeSec) * time.Millisecond
-		time.Sleep(sleepTime)
+
+		var awaitBeforeSendingMs = randRange(10, 1600)
+		var awaitBeforeSending = time.Duration(awaitBeforeSendingMs) * time.Millisecond
+		time.Sleep(awaitBeforeSending)
 	}
 }
