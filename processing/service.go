@@ -18,12 +18,14 @@ var processingDurationHistogram = promauto.NewHistogram(prometheus.HistogramOpts
 })
 
 var successfulProcessing = promauto.NewCounter(prometheus.CounterOpts{
-	Name: "ra_processing_successful_count",
-	Help: "The total number of successful",
+	Name:        "ra_processing_count",
+	Help:        "The total number of processed",
+	ConstLabels: map[string]string{"status": "success"},
 })
 var failedProcessing = promauto.NewCounter(prometheus.CounterOpts{
-	Name: "ra_processing_failed_count",
-	Help: "The total number of failed",
+	Name:        "ra_processing_count",
+	Help:        "The total number of processed",
+	ConstLabels: map[string]string{"status": "failed"},
 })
 
 func randRange(min, max int) int {
@@ -53,17 +55,19 @@ func recordFailedProcessing() {
 
 func Process() {
 	defer recordProcessingTime(time.Now())
+
 	var sleepTimeSec = randRange(10, 16000)
 	var sleepTime = time.Duration(sleepTimeSec) * time.Millisecond
 
-	fmt.Printf("process will delayed for %d\n", uint64(sleepTimeSec))
+	fmt.Println("processing a request")
 
 	time.Sleep(sleepTime)
-	fmt.Println("process")
 
 	if sleepTime%3 == 0 {
+		fmt.Println("processing failed")
 		recordFailedProcessing()
 	} else {
+		fmt.Println("processing succeed")
 		recordSuccessfullProcessing()
 	}
 
