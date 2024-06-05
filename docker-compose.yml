@@ -9,7 +9,7 @@ services:
       - "kubernetes.docker.internal:host-gateway"
     volumes:
       - ./cfg/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
-      - ./data/prometheus:/prometheus
+#      - ./data/prometheus:/prometheus
  
   grafana:
     image: grafana/grafana
@@ -23,4 +23,4 @@ services:
     volumes:
       - ./cfg/grafana/data-sources:/etc/grafana/provisioning/datasources
       - ./cfg/grafana/dashboards:/etc/grafana/provisioning/dashboards
-      - ./data/grafana:/var/lib/grafana
+#      - ./data/grafana:/var/lib/grafana
