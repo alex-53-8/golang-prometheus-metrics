@@ -29,7 +29,7 @@
         "y": 0
       },
       "id": 6,
-      "title": "Row title",
+      "title": "Rest application metrics",
       "type": "row"
     },
     {
@@ -439,11 +439,11 @@
             "type": "prometheus",
             "uid": "PBFA97CFB590B2093"
           },
-          "editorMode": "code",
+          "editorMode": "builder",
           "expr": "rate(ra_processing_time_total_sum[1m])/rate(ra_processing_time_total_count[1m])",
           "hide": false,
           "instant": false,
-          "legendFormat": "__auto",
+          "legendFormat": "time",
           "range": true,
           "refId": "A"
         }
@@ -661,7 +661,7 @@
           "hide": false,
           "includeNullMetadata": false,
           "instant": false,
-          "legendFormat": "__auto",
+          "legendFormat": "rate",
           "range": true,
           "refId": "A",
           "useBackend": false
@@ -686,6 +686,6 @@
   "timezone": "browser",
   "title": "Rest application",
   "uid": "ednlaxhqfgagwc",
-  "version": 22,
+  "version": 1,
   "weekStart": ""
 }
